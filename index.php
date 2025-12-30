@@ -32,7 +32,13 @@
     
 
 
-        <button type="submit" name ="done" placeholder="done">Completed</button>
+        <button type="submit" name ="done" placeholder="done">Completed</button>        
+        <button type="submit" name ="delete" placeholder="delete">Delete</button>
+        <button type="submit" name ="update" placeholder="update">Update</button>
+
+
+
+
 </form>
 
 </head>
@@ -55,8 +61,13 @@ if(isset($_POST['done']))
     $query = "INSERT into tasks (task,day,status,priority) values ('$task','$day','$status','$priority') ";
   mysqli_query($conn,$query);
 }
-echo $day;
-exit;
+if(isset($_POST['delete']))
+{
+    $task = $_POST['task'];
 
+    $query = "DELETE from tasks where task = '$task'";
+    mysqli_query($conn,$query);
+
+}
 
 ?>
